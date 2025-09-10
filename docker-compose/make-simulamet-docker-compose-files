@@ -110,10 +110,11 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
    # * Change IP address prefixes
    # * Change MCC to 242 (Norway)
    # * Change MNC to 88, 89, ... (unallocated in Norway)
-   # * Change IMSIs, etc. accordingly
+   # * Change IMSIs accordingly
    # * Set OPC and KI keys
    #   NOTE: We use example keys, but swapped for whatever reason
    #         -> Set placeholder first, then replace them!
+   # * Change UEID and SUPI to 242xx12345nnnnn
    sed "${input}" \
        -e "s#192\.168\.70\.#192.168.243.#g" \
        -e "s#192\.168\.71\.#192.168.244.#g" \
@@ -136,8 +137,9 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
        -e "s#\(63bfa50ee6523365ff14c1f45f88737d\|cd63cb71954a9f4e48a5994e37a02baf\|c42449363bbad02b66d16bc975d77cc1\|0C0A34601D4F07677303652C0462535B\|8e27b6af0e692e750f32667a3b14605d\)#***ENC_OPC_KEY***#g" \
        -e "s#\*\*\*ENC_AUTH_KEY\*\*\*#${ENC_AUTH_KEY}#g" \
        -e "s#\*\*\*ENC_OPC_KEY\*\*\*#${ENC_OPC_KEY}#g" \
+       -e "s#\(24288\|2429[0-9]\)00000#\112345#g" \
        >"${output}"
 done
 
 find -type f -name "*simula*" | grep -v make- | xargs grep --color 2089 || true
-# grep --color -E "[0-9a-f]{32}" database/simulamet-* || true
+# grep --color -E "[0-9a-fA-F]{32}" database/simulamet-* || true
