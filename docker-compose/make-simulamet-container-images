@@ -45,7 +45,7 @@ CONTAINERS="
    oaisoftwarealliance/oai-upf-vpp:develop
    oaisoftwarealliance/trf-gen-cn5g:latest
 "
-CONTAINERS="oaisoftwarealliance/oai-upf:develop"
+# CONTAINERS="oaisoftwarealliance/oai-upf:develop"
 
 
 declare -A CORE_FUNCTIONS=(
