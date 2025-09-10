@@ -37,7 +37,7 @@ set -eu
 
 # ====== Print banner =======================================================
 
-FUNCTION="SET_FUNCTION_HERE"
+FUNCTION="SET_FUNCTION_HERE"   # <<-- To be set in make-simulamet-containers!
 
 # Using 24-bit color codes. This may not work with all terminals!
 reset="\x1b[0m"
@@ -46,7 +46,7 @@ color2="\x1b[38;2;33;27;87m"    # SimulaMet dark blue: #211B57
 
 # ------ Print top separator ------------------------------------------------
 echo -en "${color1}"
-separator " *💻" "=" "💻*"
+separator " 💻" "▀" "💻 "
 echo ""
 center "${color1}-- ${color2}$(gettext "Welcome to the SimulaMet 5G OAI Core!") ${color1}--"
 
@@ -63,7 +63,7 @@ done
 
 # ------ Print bottom separator ---------------------------------------------
 echo -en "${reset}${color1}"
-separator " *💻" "=" "💻*"
+separator " 💻" "▄" "💻 "
 echo -e "${reset}"
 
 
