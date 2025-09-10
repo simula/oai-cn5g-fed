@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+# =====================================================================
+#                ____      _    _  ______  _   _    _
+#               |  _ \    / \  | |/ / ___|| | | |  / \
+#               | |_) |  / _ \ | ' /\___ \| |_| | / _ \
+#               |  _ <  / ___ \| . \ ___) |  _  |/ ___ \
+#               |_| \_\/_/   \_\_|\_\____/|_| |_/_/   \_\
+#
+#                5G Security for Critical Communications
+# =====================================================================
+#
+# SimulaMet RAKSHA 5G Network Core Scripts
+# Copyright (C) 2021-2025 by Thomas Dreibholz
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Contact: dreibh@simula.no
+
+set -eu
+
+COMPOSITIONS="
+   docker-compose-basic-nrf-ebpf.yaml
+   docker-compose-basic-nrf-mongodb.yaml
+   docker-compose-basic-nrf-qos.yaml
+   docker-compose-basic-nrf.yaml
+   docker-compose-gnbsim-ebpf.yaml
+   docker-compose-gnbsim-vpp-additional.yaml
+   docker-compose-gnbsim-vpp.yaml
+   docker-compose-gnbsim.yaml
+   docker-compose-mini-nonrf.yaml
+   docker-compose-my5grantester-vpp.yaml
+   docker-compose-no-privilege.yaml
+   docker-compose-oai-rfsim-ebpf.yaml
+   docker-compose-omec-gnbsim-vpp.yaml
+   docker-compose-pcf-provisioning-api.yaml
+   docker-compose-slicing-basic-nrf.yaml
+   docker-compose-slicing-ransim.yaml
+   docker-compose-ueransim-ebpf.yaml
+   docker-compose-ueransim-qos.yaml
+   docker-compose-ueransim-vpp.yaml
+"
+
+CONFIGS="
+   ./omec-gnbsim-config.yaml
+   conf/basic_nrf_config_ebpf.yaml
+   conf/basic_nrf_config_mongodb.yaml
+   conf/basic_nrf_config_qos.yaml
+   conf/basic_nrf_config.yaml
+   conf/basic_vpp_nrf_config.yaml
+   conf/mini_nonrf_config.yaml
+   conf/nssf_slice_config.yaml
+   conf/pcf_provisioning_config.yaml
+   conf/slicing_base_config.yaml
+   conf/slicing_slice1_config.yaml
+   conf/slicing_slice2_config.yaml
+   conf/slicing_slice3_config.yaml
+   conf/ulcl_config.yaml
+   ran-conf/gnb.conf
+   ran-conf/gnb_ebpf.conf
+   ran-conf/nr-ue2.conf
+   ran-conf/nr-ue.conf
+   ran-qos/oai-cn5g-gnb.yaml
+   ran-qos/ue-5qi-1.yaml
+   ran-qos/ue-5qi-3.yaml
+"
+
+#    docker-compose-basic-vpp-nrf.yaml
+#    docker-compose-basic-vpp-pcf-redirection.yaml
+#    docker-compose-basic-vpp-pcf-steering.yaml
+#    docker-compose-basic-vpp-pcf-ulcl.yaml
+
+for input in ${COMPOSITIONS} ${CONFIGS} ; do
+   if [[ "${input}" =~ ^(docker-compose-)(.*)(\.yaml)$ ]] ; then
+      output="docker-compose-simulamet-${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
+   elif [[ "${input}" =~ ^(.*/)(.*)(\.yaml|\.conf)$ ]] ; then
+      output="${BASH_REMATCH[1]}/simulamet-${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
+   else
+      echo >&2 "ERROR: Unknown file ${input}!"
+      exit 1
+   fi
+   echo "Creating ${output} ..."
+   sed "${input}" \
+       -e "s#192\.168\.70\.#192.168.243.#g" \
+       -e "s#192\.168\.71\.#192.168.244.#g" \
+       -e "s#192\.168\.72\.#192.168.245.#g" \
+       -e "s#192\.168\.73\.#192.168.246.#g" \
+       -e "s#\(mcc\|MCC\)\([ =:']*\)\(208\)#\1\2242#g" \
+       -e "s#\(mnc\|MNC\)\([ =:']*\)\(95\)#\1\288#g" \
+       -e "s#\(mnc\|MNC\)\([ =:']*\)\(93\)#\1\289#g" \
+       -e "s#\(imsi\|IMSI\)\([ =:']*\)\(20895\)#\1\224288#g" \
+       -e "s#\(imsi\|IMSI\)\([ =:']*\)\(20893\)#\1\224289#g" \
+       -e "s#./conf/#./conf/simulamet-#g" \
+       >"${output}"
+done
