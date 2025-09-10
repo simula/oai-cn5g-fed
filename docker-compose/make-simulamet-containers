@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+set -eu
+
+DOCKERHUB="dreibh"
+CONTAINERS="
+   oaisoftwarealliance/oai-amf:develop
+   oaisoftwarealliance/oai-ausf:develop
+   oaisoftwarealliance/oai-gnb:develop
+   oaisoftwarealliance/oai-nrf:develop
+   oaisoftwarealliance/oai-nr-ue:develop
+   oaisoftwarealliance/oai-nssf:develop
+   oaisoftwarealliance/oai-pcf:develop
+   oaisoftwarealliance/oai-smf:develop
+   oaisoftwarealliance/oai-udm:develop
+   oaisoftwarealliance/oai-udr:develop
+   oaisoftwarealliance/oai-upf:develop
+   oaisoftwarealliance/oai-upf-vpp:develop
+   oaisoftwarealliance/trf-gen-cn5g:latest
+"
+CONTAINERS="oaisoftwarealliance/oai-upf:develop"
+
+
+for fromContainerWithTag in ${CONTAINERS} ; do
+   modifiedContainerWithTag="${fromContainerWithTag/*\/}"
+   modifiedContainer="${modifiedContainerWithTag/:*/}"
+   modifiedContainerTag="${modifiedContainerWithTag/*:/}"
+
+   coreFunctionLabel="SimulaMet ${modifiedContainer^^}"
+
+   echo "${coreFunctionLabel}: ${fromContainerWithTag} -> ${modifiedContainer}"
+
+   cat >"Dockerfile-${modifiedContainer}" <<EOF
+FROM ${fromContainerWithTag}
+
+COPY simulamet/50-core-function /etc/system-info.d/
+
+ENV LANG="C.UTF-8" \
+    LC_ALL="C.UTF-8" \
+    EDITOR="joe"
+
+RUN sed -e 's/SET_FUNCTION_HERE/${coreFunctionLabel}/' -i /etc/system-info.d/50-core-function && \
+    apt update && \
+    DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y software-properties-common gnupg && \
+    apt-add-repository -y ppa:dreibh/ppa && \
+    apt update && \
+    echo "y" | unminimize && \
+    DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y \
+       bash-completion \
+       bwm-ng \
+       git \
+       hipercontracer \
+       joe less man \
+       netperfmeter \
+       popularity-contest plocate \
+       rsplib-tools \
+       subnetcalc \
+       tcpdump \
+       tree \
+       td-system-info \
+       traceroute \
+       tsctp \
+       tshark \
+       ytree && \
+    DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y && \
+    sed -e 's/^PARTICIPATE="no"/PARTICIPATE="yes"/' -i /etc/popularity-contest.conf && \
+    sed -e '/^SUBMITURLS=""/d' -e 's/^#SUBMITURLS=/SUBMITURLS=/' -i /usr/share/popularity-contest/default.conf && \
+    /etc/cron.daily/popularity-contest && \
+    updatedb && \
+    apt clean
+EOF
+
+   # cat "Dockerfile-${modifiedContainer}"
+   docker buildx build \
+      --tag "${DOCKERHUB}/${modifiedContainer}:${modifiedContainerTag}" \
+      --file "Dockerfile-${modifiedContainer}" \
+      --push \
+      .
+
+   echo "Test with: docker run --rm -it ${DOCKERHUB}/${modifiedContainer}:${modifiedContainerTag} bash --login"
+done
