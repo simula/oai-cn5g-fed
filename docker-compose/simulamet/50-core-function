@@ -58,12 +58,13 @@ center "${color1}-- ${color2}$(gettext "Welcome to the SimulaMet 5G OAI Core!") 
    if ! make-banner "${FUNCTION_LABEL}" "${maxWidth}" ; then
       echo "${FUNCTION_LABEL}"
    fi
-   echo -e "${color2}${FUNCTION_DESCRIPTION}${color1}"
+   echo -e "${color2}\x1b[1m${FUNCTION_DESCRIPTION}\x1b[0m${color1}"
 ) | while IFS= read -r line ; do
    center "${line}"
 done
 
 # ------ Print bottom separator ---------------------------------------------
+echo ""
 echo -en "${reset}${color1}"
 separator " 💻" "▄" "💻 "
 echo -e "${reset}"

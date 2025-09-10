@@ -45,7 +45,7 @@ CONTAINERS="
    oaisoftwarealliance/oai-upf-vpp:develop
    oaisoftwarealliance/trf-gen-cn5g:latest
 "
-# CONTAINERS="oaisoftwarealliance/oai-upf:develop"
+# CONTAINERS="oaisoftwarealliance/oai-amf:develop"
 
 
 declare -A CORE_FUNCTIONS=(
@@ -77,9 +77,9 @@ for fromContainerWithTag in ${CONTAINERS} ; do
    # echo "descriptionKey=${descriptionKey}"
 
    coreFunctionLabel="SimulaMet ${modifiedContainer^^}"
-   coreFunctionDescription="${CORE_FUNCTIONS[${descriptionKey}]} (${descriptionKey})"
+   coreFunctionDescription="This is the ${CORE_FUNCTIONS[${descriptionKey}]} (${descriptionKey})"
 
-   echo "${coreFunctionLabel} (${coreFunctionDescription}): ${fromContainerWithTag} -> ${modifiedContainer}"
+   echo "${coreFunctionLabel} \"${coreFunctionDescription}\": ${fromContainerWithTag} -> ${modifiedContainer}"
 
    cat >"Dockerfile-${modifiedContainer}" <<EOF
 FROM ${fromContainerWithTag}
@@ -97,8 +97,8 @@ RUN sed -e 's/^FUNCTION_LABEL=.*$/FUNCTION_LABEL="${coreFunctionLabel}"/' \
     apt update && \
     DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y software-properties-common gnupg && \
     apt-add-repository -y ppa:dreibh/ppa && \
-    apt update && \
-    echo "y" | unminimize && \
+    DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y && \
+    echo "y" | DEBIAN_FRONTEND=noninteractive unminimize && \
     DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y \
        bash-completion \
        bwm-ng \
@@ -106,7 +106,7 @@ RUN sed -e 's/^FUNCTION_LABEL=.*$/FUNCTION_LABEL="${coreFunctionLabel}"/' \
        hipercontracer \
        htop joe less man \
        netperfmeter \
-       popularity-contest plocate \
+       popularity-contest \
        rsplib-tools \
        subnetcalc \
        tcpdump \
@@ -116,7 +116,8 @@ RUN sed -e 's/^FUNCTION_LABEL=.*$/FUNCTION_LABEL="${coreFunctionLabel}"/' \
        tsctp \
        tshark \
        ytree && \
-    DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y plocate || \
+       DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y mlocate && \
     sed -e 's/^PARTICIPATE="no"/PARTICIPATE="yes"/' -i /etc/popularity-contest.conf && \
     sed -e '/^SUBMITURLS=""/d' -e 's/^#SUBMITURLS=/SUBMITURLS=/' -i /usr/share/popularity-contest/default.conf && \
     /etc/cron.daily/popularity-contest && \
