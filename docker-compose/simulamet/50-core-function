@@ -37,7 +37,8 @@ set -eu
 
 # ====== Print banner =======================================================
 
-FUNCTION="SET_FUNCTION_HERE"   # <<-- To be set in make-simulamet-containers!
+FUNCTION_LABEL="SimulaMet XXX-YYY"           # <<-- To be set in make-simulamet-containers!
+FUNCTION_DESCRIPTION="A Descriptive Label"   # <<-- To be set in make-simulamet-containers!
 
 # Using 24-bit color codes. This may not work with all terminals!
 reset="\x1b[0m"
@@ -54,9 +55,10 @@ center "${color1}-- ${color2}$(gettext "Welcome to the SimulaMet 5G OAI Core!") 
 (
    maxWidth="$(consolewidth)"   # Console width in characters
    # Try the FQDN hostname as banner first. But it may be too long.
-   if ! make-banner "${FUNCTION}" "${maxWidth}" ; then
-      echo "${FUNCTION}"
+   if ! make-banner "${FUNCTION_LABEL}" "${maxWidth}" ; then
+      echo "${FUNCTION_LABEL}"
    fi
+   echo -e "${color2}${FUNCTION_DESCRIPTION}${color1}"
 ) | while IFS= read -r line ; do
    center "${line}"
 done
