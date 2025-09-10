@@ -1,4 +1,31 @@
 #!/usr/bin/env bash
+# =====================================================================
+#                ____      _    _  ______  _   _    _
+#               |  _ \    / \  | |/ / ___|| | | |  / \
+#               | |_) |  / _ \ | ' /\___ \| |_| | / _ \
+#               |  _ <  / ___ \| . \ ___) |  _  |/ ___ \
+#               |_| \_\/_/   \_\_|\_\____/|_| |_/_/   \_\
+#
+#                5G Security for Critical Communications
+# =====================================================================
+#
+# SimulaMet RAKSHA 5G Network Core Scripts
+# Copyright (C) 2021-2025 by Thomas Dreibholz
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Contact: dreibh@simula.no
 
 set -eu
 
@@ -21,25 +48,52 @@ CONTAINERS="
 CONTAINERS="oaisoftwarealliance/oai-upf:develop"
 
 
+declare -A CORE_FUNCTIONS=(
+   ["AMF"]="Access and Mobility Management Function"
+   ["AUSF"]="Authentication Server Management Function"
+   ["LMF"]="Location Management Function "
+   ["NEF"]="Network Exposure Function"
+   ["NRF"]="Network Repository Function"
+   ["NSSF"]="Network Slicing Selection Function"
+   ["NWDAF"]="Network Data Analytics Function"
+   ["PCF"]="Policy Control Function"
+   ["SMF"]="Session Management Function"
+   ["UDM"]="Unified Data Management"
+   ["UDR"]="Unified Data Repository"
+   ["UPF"]="User Plane Function"
+   ["UPF-VPP"]="User Plane Function with VPP-Based Implementation"
+   ["UDSF"]="Unstructured Data Storage Function"
+   ["GNB"]="gNodeB"
+   ["NR-UE"]="New Radio User Equipment"
+   ["TRF-GEN-CN5G"]="Traffic Generator for OAI 5G Core Network"
+)
+
 for fromContainerWithTag in ${CONTAINERS} ; do
    modifiedContainerWithTag="${fromContainerWithTag/*\/}"
    modifiedContainer="${modifiedContainerWithTag/:*/}"
    modifiedContainerTag="${modifiedContainerWithTag/*:/}"
+   descriptionKey="${modifiedContainer/oai-/}"
+   descriptionKey="${descriptionKey^^}"
+   # echo "descriptionKey=${descriptionKey}"
 
    coreFunctionLabel="SimulaMet ${modifiedContainer^^}"
+   coreFunctionDescription="${CORE_FUNCTIONS[${descriptionKey}]} (${descriptionKey})"
 
-   echo "${coreFunctionLabel}: ${fromContainerWithTag} -> ${modifiedContainer}"
+   echo "${coreFunctionLabel} (${coreFunctionDescription}): ${fromContainerWithTag} -> ${modifiedContainer}"
 
    cat >"Dockerfile-${modifiedContainer}" <<EOF
 FROM ${fromContainerWithTag}
 
 COPY simulamet/50-core-function /etc/system-info.d/
+COPY simulamet/60-raksha        /etc/system-info.d/
 
 ENV LANG="C.UTF-8" \
     LC_ALL="C.UTF-8" \
     EDITOR="joe"
 
-RUN sed -e 's/SET_FUNCTION_HERE/${coreFunctionLabel}/' -i /etc/system-info.d/50-core-function && \
+RUN sed -e 's/^FUNCTION_LABEL=.*$/FUNCTION_LABEL="${coreFunctionLabel}"/' \
+        -e 's/^FUNCTION_DESCRIPTION=.*$/FUNCTION_DESCRIPTION="${coreFunctionDescription}"/' \
+        -i /etc/system-info.d/50-core-function && \
     apt update && \
     DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y software-properties-common gnupg && \
     apt-add-repository -y ppa:dreibh/ppa && \
@@ -50,7 +104,7 @@ RUN sed -e 's/SET_FUNCTION_HERE/${coreFunctionLabel}/' -i /etc/system-info.d/50-
        bwm-ng \
        git \
        hipercontracer \
-       joe less man \
+       htop joe less man \
        netperfmeter \
        popularity-contest plocate \
        rsplib-tools \
@@ -72,9 +126,9 @@ EOF
 
    # cat "Dockerfile-${modifiedContainer}"
    docker buildx build \
+      --push \
       --tag "${DOCKERHUB}/${modifiedContainer}:${modifiedContainerTag}" \
       --file "Dockerfile-${modifiedContainer}" \
-      --push \
       .
 
    echo "Test with: docker run --rm -it ${DOCKERHUB}/${modifiedContainer}:${modifiedContainerTag} bash --login"
