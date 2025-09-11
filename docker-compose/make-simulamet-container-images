@@ -45,27 +45,28 @@ CONTAINERS="
    oaisoftwarealliance/oai-upf-vpp:develop
    oaisoftwarealliance/trf-gen-cn5g:latest
 "
-# CONTAINERS="oaisoftwarealliance/oai-amf:develop"
+# CONTAINERS="ubuntu/mysql:latest"
 
 
 declare -A CORE_FUNCTIONS=(
-   ["AMF"]="Access and Mobility Management Function"
-   ["AUSF"]="Authentication Server Management Function"
-   ["LMF"]="Location Management Function "
-   ["NEF"]="Network Exposure Function"
-   ["NRF"]="Network Repository Function"
-   ["NSSF"]="Network Slicing Selection Function"
-   ["NWDAF"]="Network Data Analytics Function"
-   ["PCF"]="Policy Control Function"
-   ["SMF"]="Session Management Function"
-   ["UDM"]="Unified Data Management"
-   ["UDR"]="Unified Data Repository"
-   ["UPF"]="User Plane Function"
-   ["UPF-VPP"]="User Plane Function with VPP-Based Implementation"
-   ["UDSF"]="Unstructured Data Storage Function"
-   ["GNB"]="gNodeB"
-   ["NR-UE"]="New Radio User Equipment"
-   ["TRF-GEN-CN5G"]="Traffic Generator for OAI 5G Core Network"
+   ["AMF"]="Access and Mobility Management Function (AMF)"
+   ["AUSF"]="Authentication Server Management Function (AUSF)"
+   ["LMF"]="Location Management Function (LMF)"
+   ["NEF"]="Network Exposure Function (NEF)"
+   ["NRF"]="Network Repository Function (NRF)"
+   ["NSSF"]="Network Slicing Selection Function (NSSF)"
+   ["NWDAF"]="Network Data Analytics Function (NWDAF)"
+   ["PCF"]="Policy Control Function (PCF)"
+   ["SMF"]="Session Management Function (SMF)"
+   ["UDM"]="Unified Data Management (UDM)"
+   ["UDR"]="Unified Data Repository (UDR)"
+   ["UPF"]="User Plane Function (UPF)"
+   ["UPF-VPP"]="User Plane Function with VPP-Based Implementation (UPF-VPP)"
+   ["UDSF"]="Unstructured Data Storage Function (UDSF)"
+   ["GNB"]="gNodeB (GNB)"
+   ["NR-UE"]="New Radio User Equipment (NR-UE)"
+   ["TRF-GEN-CN5G"]="Traffic Generator for OAI 5G Core Network (TRF-GEN-CN5G)"
+   ["MYSQL"]="MySQL Subscriber Database"
 )
 
 for fromContainerWithTag in ${CONTAINERS} ; do
@@ -77,7 +78,7 @@ for fromContainerWithTag in ${CONTAINERS} ; do
    # echo "descriptionKey=${descriptionKey}"
 
    coreFunctionLabel="SimulaMet ${modifiedContainer^^}"
-   coreFunctionDescription="This is the ${CORE_FUNCTIONS[${descriptionKey}]} (${descriptionKey})"
+   coreFunctionDescription="This is the ${CORE_FUNCTIONS[${descriptionKey}]}"
 
    echo "${coreFunctionLabel} \"${coreFunctionDescription}\": ${fromContainerWithTag} -> ${modifiedContainer}"
 
