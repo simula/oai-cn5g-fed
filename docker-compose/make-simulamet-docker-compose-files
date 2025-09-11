@@ -111,7 +111,6 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
       output="docker-compose-simulamet-${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
    elif [[ "${input}" =~ ^(policies/)(.*)(\.yaml|\.conf|\.sql|\.js)$ ]] ; then
       output="simulamet-${BASH_REMATCH[1]}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
-      echo mkdir: "$(dirname "${output}")"
       mkdir -p "$(dirname "${output}")"
    elif [[ "${input}" =~ ^(.*/)(.*)(\.yaml|\.conf|\.sql|\.js)$ ]] ; then
       output="${BASH_REMATCH[1]}/simulamet-${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
