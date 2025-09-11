@@ -113,6 +113,7 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
    #   NOTE: We use example keys, but swapped for whatever reason
    #         -> Set placeholder first, then replace them!
    # * Change UEID and SUPI to 242xx12345nnnnn
+   # * Using CloudFlare public DNS servers
    sed "${input}" \
        -e "s#192\.168\.70\.#192.168.243.#g" \
        -e "s#192\.168\.71\.#192.168.244.#g" \
@@ -139,6 +140,10 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
        -e "s#\*\*\*ENC_AUTH_KEY\*\*\*#${ENC_AUTH_KEY}#g" \
        -e "s#\*\*\*ENC_OPC_KEY\*\*\*#${ENC_OPC_KEY}#g" \
        -e "s#\(24288\|2429[0-9]\)00000#\112345#g" \
+       -e 's#\(primary_ipv4: "\)\([^"]*\)\("\)#\11.1.1.1\3#g' \
+       -e 's#\(secondary_ipv4: "\)\([^"]*\)\("\)#\11.0.0.1\3#g' \
+       -e 's#\(primary_ipv6: "\)\([^"]*\)\("\)#\12606:4700:4700::1111\3#g' \
+       -e 's#\(secondary_ipv6: "\)\([^"]*\)\("\)#\12606:4700:4700::1001\3#g' \
        >"${output}"
 done
 
