@@ -149,7 +149,7 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
        -e "s#./\(policies/\)#./simulamet-\1#g" \
        -e "s#image: oaisoftwarealliance/#image: dreibh/#g" \
        -e "s#\(0C0A34601D4F07677303652C0462535B\|465b5ce8b199b49faa5f0a2ee238a6bc\|8BAF473F2F8FD09487CCCBD7097C6862\|8BAF473F2F8FD09487CCCBD7097C6862\|fec86ba6eb707ed08905757b1bb44b8f\)#***ENC_AUTH_KEY***#g" \
-       -e "s#\(63bfa50ee6523365ff14c1f45f88737d\|cd63cb71954a9f4e48a5994e37a02baf\|c42449363bbad02b66d16bc975d77cc1\|0C0A34601D4F07677303652C0462535B\|8e27b6af0e692e750f32667a3b14605d\)#***ENC_OPC_KEY***#g" \
+       -e "s#\(63bfa50ee6523365ff14c1f45f88737d\|cd63cb71954a9f4e48a5994e37a02baf\|c42449363bbad02b66d16bc975d77cc1\|8e27b6af0e692e750f32667a3b14605d\)#***ENC_OPC_KEY***#g" \
        -e "s#\*\*\*ENC_AUTH_KEY\*\*\*#${ENC_AUTH_KEY}#g" \
        -e "s#\*\*\*ENC_OPC_KEY\*\*\*#${ENC_OPC_KEY}#g" \
        -e "s#\(24288\|2429[0-9]\)00000#\112345#g" \
