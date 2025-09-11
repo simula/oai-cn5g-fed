@@ -145,7 +145,7 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
        -e "s#'20894#'24291#g" \
        -e "s#'20892#'24292#g" \
        -e "s#decision_supi95:#decision_supi88:#g" \
-       -e "s#./\(conf\|ran-conf\|ran-qos\)/#./\1/simulamet-#g" \
+       -e "s#./\(conf\|database\|ran-conf\|ran-qos\)/#./\1/simulamet-#g" \
        -e "s#./\(policies/\)#./simulamet-\1#g" \
        -e "s#image: oaisoftwarealliance/#image: dreibh/#g" \
        -e "s#\(0C0A34601D4F07677303652C0462535B\|465b5ce8b199b49faa5f0a2ee238a6bc\|8BAF473F2F8FD09487CCCBD7097C6862\|8BAF473F2F8FD09487CCCBD7097C6862\|fec86ba6eb707ed08905757b1bb44b8f\)#***ENC_AUTH_KEY***#g" \
