@@ -37,6 +37,10 @@ COMPOSITIONS="
    docker-compose-basic-nrf-mongodb.yaml
    docker-compose-basic-nrf-qos.yaml
    docker-compose-basic-nrf.yaml
+   docker-compose-basic-vpp-nrf.yaml
+   docker-compose-basic-vpp-pcf-redirection.yaml
+   docker-compose-basic-vpp-pcf-steering.yaml
+   docker-compose-basic-vpp-pcf-ulcl.yaml
    docker-compose-gnbsim-ebpf.yaml
    docker-compose-gnbsim-vpp-additional.yaml
    docker-compose-gnbsim-vpp.yaml
@@ -88,12 +92,6 @@ CONFIGS="
    database/pcf-provisioning/TrafficControlDataODB.sql
 "
 
-#    docker-compose-basic-vpp-nrf.yaml
-#    docker-compose-basic-vpp-pcf-redirection.yaml
-#    docker-compose-basic-vpp-pcf-steering.yaml
-#    docker-compose-basic-vpp-pcf-ulcl.yaml
-
-
 for input in ${COMPOSITIONS} ${CONFIGS} ; do
    if [[ "${input}" =~ ^(docker-compose-)(.*)(\.yaml)$ ]] ; then
       output="docker-compose-simulamet-${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
@@ -120,6 +118,9 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
        -e "s#192\.168\.71\.#192.168.244.#g" \
        -e "s#192\.168\.72\.#192.168.245.#g" \
        -e "s#192\.168\.73\.#192.168.246.#g" \
+       -e "s#192\.168\.74\.#192.168.247.#g" \
+       -e "s#192\.168\.75\.#192.168.248.#g" \
+       -e "s#192\.168\.76\.#192.168.249.#g" \
        -e "s#\(mcc\|MCC\)\([ =:'\"]*\)\(208\)#\1\2242#g" \
        -e "s#\(mnc\|MNC\)\([ =:'\"]*\)\(95\)#\1\288#g" \
        -e "s#\(mnc\|MNC\)\([ =:'\"]*\)\(93\)#\1\289#g" \
