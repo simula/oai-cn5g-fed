@@ -109,6 +109,7 @@ RUN sed -e 's/^FUNCTION_LABEL=.*$/FUNCTION_LABEL="${coreFunctionLabel}"/' \
        popularity-contest \
        rsplib-tools \
        subnetcalc \
+       sysstat \
        tcpdump \
        tree \
        td-system-info \
