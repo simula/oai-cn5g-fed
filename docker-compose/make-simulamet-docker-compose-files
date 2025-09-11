@@ -132,6 +132,7 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
    #         -> Set placeholder first, then replace them!
    # * Change UEID and SUPI to 242xx12345nnnnn
    # * Using CloudFlare public DNS servers
+   # * rfsim bug work-around (https://gitlab.eurecom.fr/oai/openairinterface5g/-/issues/993)
    sed "${input}" \
        -e "s#\(192\.168\.7\)\([0-9]\)\(\.\)#192.168.20\2.#g" \
        -e "s#\(mcc\|MCC\)\([ =:'\"]*\)\(208\)#\1\2242#g" \
@@ -159,6 +160,7 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
        -e 's#\(secondary_ipv4: "\)\([^"]*\)\("\)#\11.0.0.1\3#g' \
        -e 's#\(primary_ipv6: "\)\([^"]*\)\("\)#\12606:4700:4700::1111\3#g' \
        -e 's#\(secondary_ipv6: "\)\([^"]*\)\("\)#\12606:4700:4700::1001\3#g' \
+       -e 's#\(USE_ADDITIONAL_OPTIONS:\)\(.*\)\(--sa \)\(.*\)$#\1\2\4#g' \
        >"${output}"
 done
 
