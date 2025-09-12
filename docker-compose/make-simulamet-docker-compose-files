@@ -164,5 +164,5 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
        >"${output}"
 done
 
-find . -type f -mindepth 1 -maxdepth 1 -name "*simula*" | grep -v make- | xargs grep --color 2089 || true
+find . -mindepth 1 -maxdepth 1 -type f -name "*simula*" | grep -v make- | xargs grep --color 2089 || true
 # grep --color -E "[0-9a-fA-F]{32}" database/simulamet-* || true
