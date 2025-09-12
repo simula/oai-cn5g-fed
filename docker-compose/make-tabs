@@ -36,8 +36,12 @@ function generate-tabs ()
    local command="$1"
    local server="$2"
    while read -r container ; do
-      if [ "${container}" == '"mysql"' ] ; then
+      if [ "${container}" == 'mysql' ] ; then
          name="MySQL"
+      elif [[ "${container}" =~ ^oai- ]] ; then
+         name="${container/oai-/}"
+         name="${name^^}"
+         name="${name/SLICE/Slice}"
       else
          name="${container^^}"
       fi
@@ -67,9 +71,6 @@ while [ $# -gt 0 ] ; do
          echo >&2 "ERROR: Bad input fule ${inputFile}!"
          exit 1
       fi
-
-      # Filter with address:
-      # yq '.services[] | (.container_name, .networks.public_net.ipv4_address)' \
 
       echo -e "\e[34mGenerating ${outputFile} from ${inputFile} ...\e[0m"
       yq '.services[].container_name' \
