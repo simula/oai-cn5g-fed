@@ -59,20 +59,23 @@ shift
 # ====== Generate tabs files ================================================
 while [ $# -gt 0 ] ; do
    inputFile="$1"
-   outputFile="${inputFile/\.yaml/.tabs}"
-   if [ "${inputFile}" == "${outputFile}" ] ; then
-      echo >&2 "ERROR: Bad input fule ${inputFile}!"
-      exit 1
-   fi
    shift
+   for variant in access logs ; do
+      outputFile="${inputFile/\.yaml/.tabs}"
+      outputFile="${outputFile/docker-compose-/${variant}-}"
+      if [ "${inputFile}" == "${outputFile}" ] ; then
+         echo >&2 "ERROR: Bad input fule ${inputFile}!"
+         exit 1
+      fi
 
-   # Filter with address:
-   # yq '.services[] | (.container_name, .networks.public_net.ipv4_address)' \
+      # Filter with address:
+      # yq '.services[] | (.container_name, .networks.public_net.ipv4_address)' \
 
-   echo -e "\e[34mGenerating ${outputFile} from ${inputFile} ...\e[0m"
-   yq '.services[].container_name' \
-      <"${inputFile}" | \
-      tr -d '"' | \
-      generate-tabs access "${proxy}" | \
-      sort | tee "${outputFile}"
+      echo -e "\e[34mGenerating ${outputFile} from ${inputFile} ...\e[0m"
+      yq '.services[].container_name' \
+         <"${inputFile}" | \
+         tr -d '"' | \
+         generate-tabs "${variant}" "${proxy}" | \
+         sort | tee "${outputFile}"
+   done
 done
