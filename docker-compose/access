@@ -34,17 +34,15 @@ set -eu
 random-sleep 0 5
 
 # ====== Handle arguments ===================================================
-if [ $# -ne 4 ] ; then
-   echo >&2 "Usage: $0 server docker_compose_directory docker_compose_file container"
+if [ $# -ne 2 ] ; then
+   echo >&2 "Usage: $0 server container"
    exit 1
 fi
 
 server="$1"
-dockerComposeDirectory="$2"
-dockerComposeFile="$3"
-container="$4"
+container="$2"
 shift 2
 while true ; do
    echo "Connecting to ${container} on ${server} ..."
-   ssh -t "${server}" docker compose -f "${dockerComposeDirectory}/${dockerComposeFile}" exec -it "${container}" /bin/bash --login || random-sleep 0 30
+   ssh -t "${server}" docker exec -it "${container}" /bin/bash --login || random-sleep 0 30
 done

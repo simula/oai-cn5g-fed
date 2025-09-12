@@ -30,22 +30,18 @@
 set -eu
 
 
-REMOTE_DOCKER_COMPOSE_DIRECTORY="/home/nornetpp/src/oai-cn5g-fed/docker-compose"
-
-
 # ###### Generate tab configurations ########################################
 function generate-tabs ()
 {
-   local proxy="$1"
-   local dockerComposeDirectory="$2"
-   local dockerComposeFile="$3"
+   local command="$1"
+   local server="$2"
    while read -r container ; do
       if [ "${container}" == '"mysql"' ] ; then
          name="MySQL"
       else
          name="${container^^}"
       fi
-      echo "title: ${name};; command: $(realpath access) ${proxy} ${dockerComposeDirectory} ${dockerComposeFile} ${container}"
+      echo "title: ${name};; command: $(realpath "${command}") ${server} ${container}"
    done
 }
 
@@ -54,7 +50,7 @@ function generate-tabs ()
 
 # ====== Handle arguments ===================================================
 if [ $# -lt 2 ] ; then
-   echo >&2 "Usage: $0 proxy_server dockerfile [...]"
+   echo >&2 "Usage: $0 server dockerfile [...]"
    exit 1
 fi
 proxy=$1
@@ -63,7 +59,6 @@ shift
 # ====== Generate tabs files ================================================
 while [ $# -gt 0 ] ; do
    inputFile="$1"
-   inputFileBasename="$(basename "$1")"
    outputFile="${inputFile/\.yaml/.tabs}"
    if [ "${inputFile}" == "${outputFile}" ] ; then
       echo >&2 "ERROR: Bad input fule ${inputFile}!"
@@ -78,6 +73,6 @@ while [ $# -gt 0 ] ; do
    yq '.services[].container_name' \
       <"${inputFile}" | \
       tr -d '"' | \
-      generate-tabs "${proxy}" "${REMOTE_DOCKER_COMPOSE_DIRECTORY}" "${inputFileBasename}" | \
+      generate-tabs access "${proxy}" | \
       sort | tee "${outputFile}"
 done
