@@ -166,7 +166,7 @@ for input in ${COMPOSITIONS} ${CONFIGS} ; do
       yq -Y \
          '.networks[] |= (select(.driver_opts."com.docker.network.bridge.name" == "demo-oai").driver = "macvlan")' |\
       yq -Y \
-         ".networks[] |= (select(.driver == \"macvlan\").drive_opts.parent = \"${VLAN_IF}\")" |\
+         ".networks[] |= (select(.driver == \"macvlan\").driver_opts.parent = \"${VLAN_IF}\")" |\
       sed -e 's#^\([  ]*\)#\1\1#' >"${output}"
    else
       cat >"${output}"
