@@ -44,8 +44,9 @@ CONTAINERS="
    oaisoftwarealliance/oai-upf:develop
    oaisoftwarealliance/oai-upf-vpp:develop
    oaisoftwarealliance/trf-gen-cn5g:latest
+   oaisoftwarealliance/ims:latest
 "
-# CONTAINERS="ubuntu/mysql:latest"
+# CONTAINERS="oaisoftwarealliance/ims:latest"
 
 
 declare -A CORE_FUNCTIONS=(
@@ -67,6 +68,7 @@ declare -A CORE_FUNCTIONS=(
    ["NR-UE"]="New Radio User Equipment (NR-UE)"
    ["TRF-GEN-CN5G"]="Traffic Generator for OAI 5G Core Network (TRF-GEN-CN5G)"
    ["MYSQL"]="MySQL Subscriber Database"
+   ["IMS"]="IP Multimedia Subsystem"
 )
 
 for fromContainerWithTag in ${CONTAINERS} ; do
