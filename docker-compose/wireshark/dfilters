@@ -1,0 +1,48 @@
+# =====================================================================
+#                ____      _    _  ______  _   _    _
+#               |  _ \    / \  | |/ / ___|| | | |  / \
+#               | |_) |  / _ \ | ' /\___ \| |_| | / _ \
+#               |  _ <  / ___ \| . \ ___) |  _  |/ ___ \
+#               |_| \_\/_/   \_\_|\_\____/|_| |_/_/   \_\
+#
+#                5G Security for Critical Communications
+# =====================================================================
+#
+# SimulaMet RAKSHA Wireshark Display Filters
+# Copyright (C) 2021-2025 by Thomas Dreibholz
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Contact: dreibh@simula.no
+
+"SCTP only" sctp
+"NGAP" ngap
+"NGAP and important SCTP chunks" ngap || ((sctp.chunk_type < 3) || (sctp.chunk_type > 5))
+
+"Ethernet address 00:00:5e:00:53:00" eth.addr == 00:00:5e:00:53:00
+"Ethernet type 0x0806 (ARP)" eth.type == 0x0806
+"Ethernet broadcast" eth.addr == ff:ff:ff:ff:ff:ff
+"No ARP" not arp
+"IPv4 only" ip
+"IPv4 address 192.0.2.1" ip.addr == 192.0.2.1
+"IPv4 address isn't 192.0.2.1 (don't use != for this!)" !(ip.addr == 192.0.2.1)
+"IPv6 only" ipv6
+"IPv6 address 2001:db8::1" ipv6.addr == 2001:db8::1
+"TCP only" tcp
+"UDP only" udp
+"Non-DNS" !(udp.port == 53 || tcp.port == 53)
+"TCP or UDP port is 80 (HTTP)" tcp.port == 80 || udp.port == 80
+"HTTP" http
+"No ARP and no DNS" not arp and !(udp.port == 53)
+"Non-HTTP and non-SMTP to/from 192.0.2.1" ip.addr == 192.0.2.1 and not tcp.port in {80 25}
