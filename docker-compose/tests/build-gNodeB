@@ -1,0 +1,12 @@
+#!/bin/bash -eu
+
+cd ~/src/openairinterface5g
+source oaienv
+export BUILD_UHD_FROM_SOURCE=True
+export UHD_VERSION=4.8.0.0
+
+# !!!!!! Add -I to install the dependencies !!!!!
+./cmake_targets/build_oai -w USRP -c --eNB --gNB --nrUE --run-with-gdb RelWithDebInfo
+# -I
+
+echo "Ready!"
