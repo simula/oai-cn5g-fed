@@ -40,4 +40,28 @@ ping -c3 -i0.2 10.132.17.40      # Ettus via copper
 cd ~/src/openairinterface5g
 source oaienv
 cd cmake_targets/ran_build/build
-sudo nice -n -19 ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf --gNBs.[0].min_rxtxtime 6 --sa --usrp-tx-thread-config 1
+
+
+# Simple:
+# sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf --gNBs.[0].min_rxtxtime 6 --sa --usrp-tx-thread-config 1 --thread-pool 1,2,3,4
+
+
+# Allow coredumps:
+sudo bash -c "ulimit -c unlimited ; exec ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf --gNBs.[0].min_rxtxtime 6 --sa --usrp-tx-thread-config 1 --thread-pool 1,2,3,4"
+
+
+# Some testing with real-time scheduling and priority:
+# sudo chrt --fifo -r 99 ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf --gNBs.[0].min_rxtxtime 6 --sa --usrp-tx-thread-config 1 --thread-pool 1,2,3,4
+
+
+# Non-root run:
+# See tuning_and_security.md -> https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/69962ef9abcac0431505207ccb37b41a893f0d6c/doc/tuning_and_security.md:
+# sudo setcap cap_sys_nice+ep ./nr-softmodem
+# sudo setcap cap_ipc_lock+ep ./nr-softmodem
+# sudo setcap cap_sys_nice+ep ./nr-uesoftmodem
+# sudo setcap cap_ipc_lock+ep ./nr-uesoftmodem
+# sudo setcap cap_net_admin+ep ./nr-uesoftmodem
+# sudo sysctl -w net.core.wmem_max=62500000
+# sudo sysctl -w net.core.rmem_max=62500000
+# ulimit -c unlimited
+# ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.106PRB.2x2.usrpn310.conf --gNBs.[0].min_rxtxtime 6 --sa --usrp-tx-thread-config 1 --thread-pool 1,2,3,4
