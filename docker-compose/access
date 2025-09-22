@@ -44,5 +44,5 @@ container="$2"
 shift 2
 while true ; do
    echo "Connecting to ${container} on ${server} ..."
-   ssh -t "${server}" docker exec -it "${container}" /bin/bash --login || random-sleep 0 10
+   ssh -4t "${server}" docker exec -it "${container}" /bin/bash --login || random-sleep 0 10
 done
