@@ -43,10 +43,11 @@ CONTAINERS="
    oaisoftwarealliance/oai-udr:develop
    oaisoftwarealliance/oai-upf:develop
    oaisoftwarealliance/oai-upf-vpp:develop
+   ubuntu/mysql:latest
    oaisoftwarealliance/trf-gen-cn5g:latest
    oaisoftwarealliance/ims:latest
 "
-# CONTAINERS="oaisoftwarealliance/ims:latest"
+# CONTAINERS="ubuntu/mysql:latest"
 
 
 declare -A CORE_FUNCTIONS=(
