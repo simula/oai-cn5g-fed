@@ -47,7 +47,7 @@ CONTAINERS="
    oaisoftwarealliance/trf-gen-cn5g:latest
    oaisoftwarealliance/ims:latest
 "
-CONTAINERS="ubuntu/mysql:latest"
+# CONTAINERS="ubuntu/mysql:latest"
 
 
 declare -A CORE_FUNCTIONS=(
