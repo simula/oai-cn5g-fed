@@ -1,0 +1,648 @@
+decision_supi1:
+  supi_imsi: "242881234500031"
+  pcc_rules:
+    - non-gbr-rule-5qi-5
+    - gbr-rule-5qi-1
+
+decision_supi2:
+  supi_imsi: "242881234500032"
+  pcc_rules:
+    - gbr-rule-5qi-1
+    
+decision_supi3:
+  supi_imsi: "242881234500033"
+  pcc_rules:
+    - delay-critical-gbr-rule-5qi-82
+
+decision_supi4:
+  supi_imsi: "242881234500034"
+  pcc_rules:
+    - gbr-rule-5qi-3
+
+decision_supi5:
+  supi_imsi: "242881234500035"
+  pcc_rules:
+    - gbr-rule-5qi-1
+
+decision_supi6:
+  supi_imsi: "242881234500036"
+  pcc_rules:
+    - delay-critical-gbr-rule-5qi-84
+
+decision_supi7:
+  supi_imsi: "242881234500037"
+  pcc_rules:
+    - gbr-rule-5qi-73
+
+decision_supi8:
+  supi_imsi: "242881234500038"
+  pcc_rules:
+    - gbr-rule-5qi-1
+
+decision_supi9:
+  supi_imsi: "242881234500039"
+  pcc_rules:
+   - gbr-rule-5qi-66
+
+decision_supi10:
+  supi_imsi: "242881234500040"
+  pcc_rules:
+    - gbr-rule-5qi-66
+
+decision_supi11:
+  supi_imsi: "242881234500041"
+  pcc_rules:
+    - delay-critical-gbr-rule-5qi-84
+
+decision_supi12:
+  supi_imsi: "242881234500042"
+  pcc_rules:
+    - non-gbr-rule-5qi-8
+    - gbr-rule-5qi-73
+
+decision_supi13:
+  supi_imsi: "242881234500043"
+  pcc_rules:
+    - non-gbr-rule-5qi-80
+
+decision_supi14:
+  supi_imsi: "242881234500044"
+  pcc_rules:
+    - delay-critical-gbr-rule-5qi-82
+
+decision_supi15:
+  supi_imsi: "242881234500045"
+  pcc_rules:
+    - non-gbr-rule-5qi-79
+    - delay-critical-gbr-rule-5qi-85
+
+decision_supi16:
+  supi_imsi: "242881234500046"
+  pcc_rules:
+    - gbr-rule-5qi-67
+
+decision_supi17:
+  supi_imsi: "242881234500047"
+  pcc_rules:
+    - non-gbr-rule-5qi-7
+    - gbr-rule-5qi-66
+
+decision_supi18:
+  supi_imsi: "242881234500048"
+  pcc_rules:
+    - gbr-rule-5qi-3
+
+decision_supi19:
+  supi_imsi: "242881234500049"
+  pcc_rules:
+    - delay-critical-gbr-rule-5qi-86
+
+decision_supi20:
+  supi_imsi: "242881234500050"
+  pcc_rules:
+    - non-gbr-rule-5qi-8
+    - gbr-rule-5qi-72
+
+decision_supi21:
+  supi_imsi: "242881234500041"
+  pcc_rules:
+    - non-gbr-rule-5qi-9
+
+decision_supi22:
+  supi_imsi: "242881234500042"
+  pcc_rules:
+    - gbr-rule-5qi-2
+    - delay-critical_gbr-rule-5qi-83
+
+decision_supi23:
+  supi_imsi: "242881234500043"
+  pcc_rules:
+    - gbr-rule-5qi-1
+    - non-gbr-rule-5qi-8
+
+decision_supi24:
+  supi_imsi: "242881234500044"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-84
+
+decision_supi25:
+  supi_imsi: "242881234500045"
+  pcc_rules:
+    - non-gbr-rule-5qi-5
+    - gbr-rule-5qi-3
+
+decision_supi26:
+  supi_imsi: "242881234500046"
+  pcc_rules:
+    - non-gbr-rule-5qi-6
+
+decision_supi27:
+  supi_imsi: "242881234500047"
+  pcc_rules:
+    - gbr-rule-5qi-72
+    - non-gbr-rule-5qi-9
+
+decision_supi28:
+  supi_imsi: "242881234500048"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-82
+
+decision_supi29:
+  supi_imsi: "242881234500049"
+  pcc_rules:
+    - gbr-rule-5qi-74
+    - non-gbr-rule-5qi-8
+
+decision_supi30:
+  supi_imsi: "242881234500050"
+  pcc_rules:
+    - gbr-rule-5qi-66
+
+decision_supi31:
+  supi_imsi: "242881234500051"
+  pcc_rules:
+    - non-gbr-rule-5qi-7
+    - delay-critical_gbr-rule-5qi-86
+
+decision_supi32:
+  supi_imsi: "242881234500052"
+  pcc_rules:
+    - non-gbr-rule-5qi-5
+
+decision_supi33:
+  supi_imsi: "242881234500053"
+  pcc_rules:
+    - gbr-rule-5qi-75
+    - delay-critical_gbr-rule-5qi-85
+
+decision_supi34:
+  supi_imsi: "242881234500054"
+  pcc_rules:
+    - non-gbr-rule-5qi-9
+    - gbr-rule-5qi-3
+
+decision_supi35:
+  supi_imsi: "242881234500055"
+  pcc_rules:
+    - gbr-rule-5qi-76
+    - non-gbr-rule-5qi-6
+
+decision_supi36:
+  supi_imsi: "242881234500056"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-82
+
+decision_supi37:
+  supi_imsi: "242881234500057"
+  pcc_rules:
+    - gbr-rule-5qi-1
+
+decision_supi38:
+  supi_imsi: "242881234500058"
+  pcc_rules:
+    - non-gbr-rule-5qi-7
+
+decision_supi39:
+  supi_imsi: "242881234500059"
+  pcc_rules:
+    - gbr-rule-5qi-66
+    - non-gbr-rule-5qi-8
+
+decision_supi40:
+  supi_imsi: "242881234500060"
+  pcc_rules:
+    - non-gbr-rule-5qi-6
+    - delay-critical_gbr-rule-5qi-84
+
+decision_supi41:
+  supi_imsi: "242881234500061"
+  pcc_rules:
+    - gbr-rule-5qi-74
+    - non-gbr-rule-5qi-9
+
+decision_supi42:
+  supi_imsi: "242881234500062"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-82
+
+decision_supi43:
+  supi_imsi: "242881234500063"
+  pcc_rules:
+    - gbr-rule-5qi-67
+    - non-gbr-rule-5qi-8
+
+decision_supi44:
+  supi_imsi: "242881234500064"
+  pcc_rules:
+    - gbr-rule-5qi-65
+
+decision_supi45:
+  supi_imsi: "242881234500065"
+  pcc_rules:
+    - non-gbr-rule-5qi-5
+    - delay-critical_gbr-rule-5qi-86
+
+decision_supi46:
+  supi_imsi: "242881234500066"
+  pcc_rules:
+    - gbr-rule-5qi-3
+    - delay-critical_gbr-rule-5qi-83
+    - non-gbr-rule-5qi-7
+
+decision_supi47:
+  supi_imsi: "242881234500067"
+  pcc_rules:
+    - non-gbr-rule-5qi-6
+
+decision_supi48:
+  supi_imsi: "242881234500068"
+  pcc_rules:
+    - gbr-rule-5qi-72
+
+decision_supi49:
+  supi_imsi: "242881234500069"
+  pcc_rules:
+    - non-gbr-rule-5qi-80
+    - gbr-rule-5qi-76
+
+decision_supi50:
+  supi_imsi: "242881234500070"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-84
+
+decision_supi51:
+  supi_imsi: "242881234500071"
+  pcc_rules:
+    - gbr-rule-5qi-71
+    - non-gbr-rule-5qi-9
+
+decision_supi52:
+  supi_imsi: "242881234500072"
+  pcc_rules:
+    - gbr-rule-5qi-4
+
+decision_supi53:
+  supi_imsi: "242881234500073"
+  pcc_rules:
+    - non-gbr-rule-5qi-79
+    - delay-critical_gbr-rule-5qi-85
+
+decision_supi54:
+  supi_imsi: "242881234500074"
+  pcc_rules:
+    - gbr-rule-5qi-74
+    - non-gbr-rule-5qi-6
+
+decision_supi55:
+  supi_imsi: "242881234500075"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-83
+    - gbr-rule-5qi-2
+
+decision_supi56:
+  supi_imsi: "242881234500076"
+  pcc_rules:
+    - non-gbr-rule-5qi-7
+
+decision_supi57:
+  supi_imsi: "242881234500077"
+  pcc_rules:
+    - gbr-rule-5qi-73
+    - delay-critical_gbr-rule-5qi-86
+
+decision_supi58:
+  supi_imsi: "242881234500078"
+  pcc_rules:
+    - gbr-rule-5qi-66
+
+decision_supi59:
+  supi_imsi: "242881234500079"
+  pcc_rules:
+    - non-gbr-rule-5qi-69
+    - delay-critical_gbr-rule-5qi-82
+
+decision_supi60:
+  supi_imsi: "242881234500080"
+  pcc_rules:
+    - non-gbr-rule-5qi-5
+    - gbr-rule-5qi-75
+
+decision_supi61:
+  supi_imsi: "242881234500081"
+  pcc_rules:
+    - gbr-rule-5qi-72
+    - non-gbr-rule-5qi-9
+
+decision_supi62:
+  supi_imsi: "242881234500082"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-85
+
+decision_supi63:
+  supi_imsi: "242881234500083"
+  pcc_rules:
+    - gbr-rule-5qi-67
+    - non-gbr-rule-5qi-8
+    - delay-critical_gbr-rule-5qi-86
+
+decision_supi64:
+  supi_imsi: "242881234500084"
+  pcc_rules:
+    - gbr-rule-5qi-71
+
+decision_supi65:
+  supi_imsi: "242881234500085"
+  pcc_rules:
+    - non-gbr-rule-5qi-5
+    - delay-critical_gbr-rule-5qi-82
+
+decision_supi66:
+  supi_imsi: "242881234500086"
+  pcc_rules:
+    - gbr-rule-5qi-2
+    - delay-critical_gbr-rule-5qi-84
+
+decision_supi67:
+  supi_imsi: "242881234500087"
+  pcc_rules:
+    - non-gbr-rule-5qi-6
+
+decision_supi68:
+  supi_imsi: "242881234500088"
+  pcc_rules:
+    - gbr-rule-5qi-66
+    - delay-critical_gbr-rule-5qi-83
+
+decision_supi69:
+  supi_imsi: "242881234500089"
+  pcc_rules:
+    - non-gbr-rule-5qi-80
+    - gbr-rule-5qi-76
+
+decision_supi70:
+  supi_imsi: "242881234500090"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-85
+    - gbr-rule-5qi-3
+
+decision_supi71:
+  supi_imsi: "242881234500091"
+  pcc_rules:
+    - gbr-rule-5qi-74
+    - non-gbr-rule-5qi-7
+
+decision_supi72:
+  supi_imsi: "242881234500092"
+  pcc_rules:
+    - gbr-rule-5qi-4
+
+decision_supi73:
+  supi_imsi: "242881234500093"
+  pcc_rules:
+    - non-gbr-rule-5qi-79
+    - delay-critical_gbr-rule-5qi-84
+
+decision_supi74:
+  supi_imsi: "242881234500094"
+  pcc_rules:
+    - gbr-rule-5qi-65
+    - non-gbr-rule-5qi-6
+
+decision_supi75:
+  supi_imsi: "242881234500095"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-86
+    - gbr-rule-5qi-2
+
+decision_supi76:
+  supi_imsi: "242881234500096"
+  pcc_rules:
+    - non-gbr-rule-5qi-7
+
+decision_supi77:
+  supi_imsi: "242881234500097"
+  pcc_rules:
+    - gbr-rule-5qi-73
+    - delay-critical_gbr-rule-5qi-82
+
+decision_supi78:
+  supi_imsi: "242881234500098"
+  pcc_rules:
+    - gbr-rule-5qi-66
+    - non-gbr-rule-5qi-70
+
+decision_supi79:
+  supi_imsi: "242881234500099"
+  pcc_rules:
+    - non-gbr-rule-5qi-69
+    - delay-critical_gbr-rule-5qi-83
+
+decision_supi80:
+  supi_imsi: "242881234500100"
+  pcc_rules:
+    - non-gbr-rule-5qi-5
+    - gbr-rule-5qi-75
+    - delay-critical_gbr-rule-5qi-82
+
+decision_supi81:
+  supi_imsi: "242881234500101"
+  pcc_rules:
+    - gbr-rule-5qi-71
+    - non-gbr-rule-5qi-9
+
+decision_supi82:
+  supi_imsi: "242881234500102"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-85
+    - gbr-rule-5qi-3
+
+decision_supi83:
+  supi_imsi: "242881234500103"
+  pcc_rules:
+    - non-gbr-rule-5qi-7
+
+decision_supi84:
+  supi_imsi: "242881234500104"
+  pcc_rules:
+    - gbr-rule-5qi-72
+    - delay-critical_gbr-rule-5qi-83
+
+decision_supi85:
+  supi_imsi: "242881234500105"
+  pcc_rules:
+    - gbr-rule-5qi-66
+    - non-gbr-rule-5qi-5
+    - delay-critical_gbr-rule-5qi-86
+
+decision_supi86:
+  supi_imsi: "242881234500106"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-82
+
+decision_supi87:
+  supi_imsi: "242881234500107"
+  pcc_rules:
+    - gbr-rule-5qi-74
+    - non-gbr-rule-5qi-6
+
+decision_supi88:
+  supi_imsi: "242881234500108"
+  pcc_rules:
+    - gbr-rule-5qi-2
+    - delay-critical_gbr-rule-5qi-85
+
+decision_supi89:
+  supi_imsi: "242881234500109"
+  pcc_rules:
+    - non-gbr-rule-5qi-8
+
+decision_supi90:
+  supi_imsi: "242881234500110"
+  pcc_rules:
+    - gbr-rule-5qi-65
+    - delay-critical_gbr-rule-5qi-83
+
+decision_supi91:
+  supi_imsi: "242881234500111"
+  pcc_rules:
+    - gbr-rule-5qi-75
+    - non-gbr-rule-5qi-79
+
+decision_supi92:
+  supi_imsi: "242881234500112"
+  pcc_rules:
+    - gbr-rule-5qi-76
+    - delay-critical_gbr-rule-5qi-84
+
+decision_supi93:
+  supi_imsi: "242881234500113"
+  pcc_rules:
+    - non-gbr-rule-5qi-80
+
+decision_supi94:
+  supi_imsi: "242881234500114"
+  pcc_rules:
+    - gbr-rule-5qi-67
+    - non-gbr-rule-5qi-6
+
+decision_supi88:
+  supi_imsi: "242881234500115"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-82
+    - gbr-rule-5qi-3
+
+decision_supi96:
+  supi_imsi: "242881234500116"
+  pcc_rules:
+    - non-gbr-rule-5qi-5
+    - gbr-rule-5qi-71
+
+decision_supi97:
+  supi_imsi: "242881234500117"
+  pcc_rules:
+    - gbr-rule-5qi-72
+    - delay-critical_gbr-rule-5qi-85
+
+decision_supi98:
+  supi_imsi: "242881234500118"
+  pcc_rules:
+    - non-gbr-rule-5qi-9
+
+decision_supi99:
+  supi_imsi: "242881234500119"
+  pcc_rules:
+    - gbr-rule-5qi-66
+    - non-gbr-rule-5qi-7
+    - delay-critical_gbr-rule-5qi-84
+
+decision_supi100:
+  supi_imsi: "242881234500120"
+  pcc_rules:
+    - gbr-rule-5qi-4
+    - delay-critical_gbr-rule-5qi-86
+    - non-gbr-rule-5qi-70
+
+decision_supi101:
+  supi_imsi: "242881234500121"
+  pcc_rules:
+    - gbr-rule-5qi-1
+    - non-gbr-rule-5qi-9
+
+decision_supi102:
+  supi_imsi: "242881234500122"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-85
+    - gbr-rule-5qi-75
+
+decision_supi103:
+  supi_imsi: "242881234500123"
+  pcc_rules:
+    - non-gbr-rule-5qi-7
+    - gbr-rule-5qi-3
+    - delay-critical_gbr-rule-5qi-84
+
+decision_supi104:
+  supi_imsi: "242881234500124"
+  pcc_rules:
+    - gbr-rule-5qi-2
+
+decision_supi105:
+  supi_imsi: "242881234500125"
+  pcc_rules:
+    - gbr-rule-5qi-67
+    - non-gbr-rule-5qi-6
+
+decision_supi106:
+  supi_imsi: "242881234500126"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-82
+    - gbr-rule-5qi-65
+    - non-gbr-rule-5qi-79
+
+decision_supi107:
+  supi_imsi: "242881234500127"
+  pcc_rules:
+    - gbr-rule-5qi-74
+    - non-gbr-rule-5qi-5
+
+decision_supi108:
+  supi_imsi: "242881234500128"
+  pcc_rules:
+    - non-gbr-rule-5qi-80
+    - delay-critical_gbr-rule-5qi-83
+
+decision_supi109:
+  supi_imsi: "242881234500129"
+  pcc_rules:
+    - gbr-rule-5qi-66
+    - non-gbr-rule-5qi-8
+
+decision_supi110:
+  supi_imsi: "242881234500130"
+  pcc_rules:
+    - delay-critical_gbr-rule-5qi-86
+    - gbr-rule-5qi-76
+    - non-gbr-rule-5qi-69
+
+decision_supi111:
+  supi_imsi: "242881234500131"
+  pcc_rules:
+    - gbr-rule-5qi-2
+    
+
+decision_dnn:
+  dnn: default
+  pcc_rules:
+    - non-gbr-rule-5qi-9
+
+decision_default:
+  default: true
+  pcc_rules:
+    - non-gbr-rule-5qi-9
+
+decision_slice:
+  slice: 
+    sst: 222
+    sd: "123"
+  pcc_rules:
+    - non-gbr-rule-5qi-9
