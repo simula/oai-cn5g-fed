@@ -43,10 +43,11 @@ CONTAINERS="
    oaisoftwarealliance/oai-udr:develop
    oaisoftwarealliance/oai-upf:develop
    oaisoftwarealliance/oai-upf-vpp:develop
+   ubuntu/mysql:latest
    oaisoftwarealliance/trf-gen-cn5g:latest
    oaisoftwarealliance/ims:latest
 "
-# CONTAINERS="oaisoftwarealliance/ims:latest"
+# CONTAINERS="ubuntu/mysql:latest"
 
 
 declare -A CORE_FUNCTIONS=(
@@ -105,10 +106,12 @@ RUN sed -e 's/^FUNCTION_LABEL=.*$/FUNCTION_LABEL="${coreFunctionLabel}"/' \
     DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y \
        bash-completion \
        bwm-ng \
+       curl \
        git \
        hipercontracer \
        htop joe less man \
        iproute2 \
+       iputils-ping \
        netperfmeter \
        net-tools \
        popularity-contest \
