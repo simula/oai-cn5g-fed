@@ -108,7 +108,9 @@ RUN sed -e 's/^FUNCTION_LABEL=.*$/FUNCTION_LABEL="${coreFunctionLabel}"/' \
        git \
        hipercontracer \
        htop joe less man \
+       iproute2 \
        netperfmeter \
+       net-tools \
        popularity-contest \
        rsplib-tools \
        subnetcalc \
